@@ -14,7 +14,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::latest()->get();
+
+        return $posts;
     }
 
     /**
@@ -35,7 +37,17 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required',
+            'url' => 'required'
+        ]);
+        $post = Post::create([
+           'user_id' => auth()->id(),
+            'title' => request('title'),
+            'url' => request('url')
+        ]);
+
+        return $post;
     }
 
     /**
