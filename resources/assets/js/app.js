@@ -16,6 +16,9 @@ window.Vue = require('vue');
  */
 
 Vue.component('timeline', require('./components/Timeline.vue'));
+Vue.component('post', require('./components/Post.vue.vue'));
+Vue.component('posts', require('./components/Posts.vue.vue'));
+Vue.component('post-form', require('./components/PostForm.vue'));
 
 const app = new Vue({
     el: '#app'
