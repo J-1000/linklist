@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use Illuminate\Http\Request;
+use Auth;
 
 class PostController extends Controller
 {
@@ -41,10 +42,11 @@ class PostController extends Controller
             'title' => 'required',
             'url' => 'required'
         ]);
-        $post = Post::create([
-           'user_id' => auth()->id(),
+
+        $post = $request->user()->posts()->create([
             'title' => request('title'),
-            'url' => request('url')
+            'url' => request('url'),
+            'source_domain' => request('source_domain')
         ]);
 
         return $post;
